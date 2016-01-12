@@ -33,14 +33,18 @@ def decode_reply(binary, fmt):
 
     return binary[fmt:reply_end]
 
-def decode_metric(binary, components=[]):
+
+def decode_metric(binary, components=None):
     if len(binary) <= 1:
         return components
+
+    if components is None:
+        components = []
 
     length, = struct.unpack(PACK_FMT[1], binary[:1])
     name, = struct.unpack("%ds" % length, binary[1: length + 1])
     components.append(name)
-    return decode_metric(binary[length + 1:])
+    return decode_metric(binary[length + 1:], components)
 
 
 def encode_name(name):
@@ -51,6 +55,10 @@ def encode_name(name):
 
 
 def encode_metric_value(value):
+    if value < 0:
+        padding = "\xff\xff\xff"
+    else:
+        padding = "\x00\x00\x00"
     ptype = struct.pack(PACK_FMT[1], 1)
-    pvalue = "\x00\x00\x00" + struct.pack(PACK_FMT[4], value)
+    pvalue = padding + struct.pack(">i", value)
     return ptype + pvalue
