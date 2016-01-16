@@ -7,7 +7,7 @@ import time
 
 
 from dproto_hdr import LIST_BUCKETS, METRICS_SS, BUCKETS_SS, PACK_FMT, TCP_SS, \
-    LIST_METRICS, STREAM_MODE, PAYLOAD, TIME_SIZE, FLUSH
+    LIST_METRICS, STREAM_MODE, PAYLOAD, TIME_SIZE
 
 remote = ('167.114.250.104', 5555)
 local = ('127.0.0.1', 5555)
@@ -89,19 +89,16 @@ class API():
         pvalue_size = struct.pack(PACK_FMT[4], len(pvalue))
         self._raw_send(PAYLOAD + ptime + pmetric_size + pmetric + pvalue_size + pvalue)
 
-    def flush(self):
-        self._send(FLUSH)
-
 
 with API(remote) as api:
     # res =  list_buckets()
     # res = api.list_metrics("dalmatinerdb")
+
     api.switch_streaming("colin")
     #
     while True:
         ts = int(time.time())
-        value = -8
-        metric = "negative"
+        value = "123.456"
+        metric = "float"
         api.send_payload(metric, ts, value)
-        # api.flush
         time.sleep(1)
