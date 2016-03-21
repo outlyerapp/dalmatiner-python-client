@@ -9,7 +9,7 @@ docs/_build
 .eggs
 .coverage
 .idea
-ddb-python.egg-info/
+ddb_python.egg-info/
 coverage.xml
 nosetests.xml
 index.html
