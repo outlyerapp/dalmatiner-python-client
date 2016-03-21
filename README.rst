@@ -3,6 +3,10 @@
 `dalmatiner-python-client`_
 ----------------------------
 
+.. code-block:: none
+
+    pip install --upgrade ddbpy
+
 A client that sends metrics into Dalmatiner DB over the binary protocol and wraps the http front end for queries.
 
 Docs for the binary protocol: https://docs.dalmatiner.io/en/latest/proto.html
