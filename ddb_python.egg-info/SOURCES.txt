@@ -1,0 +1,16 @@
+README.rst
+setup.cfg
+setup.py
+ddb-python/__init__.py
+ddb-python/_version.py
+ddb-python/client.py
+ddb-python/dproto_hdr.py
+ddb-python/dproto_tcp.py
+ddb_python.egg-info/PKG-INFO
+ddb_python.egg-info/SOURCES.txt
+ddb_python.egg-info/dependency_links.txt
+ddb_python.egg-info/not-zip-safe
+ddb_python.egg-info/requires.txt
+ddb_python.egg-info/top_level.txt
+test/__init__.py
+test/listen.py

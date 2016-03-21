@@ -18,10 +18,4 @@ METRICS_SS = 8
 METRIC_SS = 2
 TIME_SIZE = 8
 
-PACK_FMT = {
-    1: ">B",
-    2: ">H",
-    4: ">L",
-    8: ">Q"
-
-}
+PACK_FMT = {1: ">B", 2: ">H", 4: ">L", 8: ">Q"}

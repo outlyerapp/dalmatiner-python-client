@@ -1,4 +1,7 @@
-# dalmatiner-python-client
+.. _readme:
+
+`dalmatiner-python-client`_
+----------------------------
 
 A client that sends metrics into Dalmatiner DB over the binary protocol and wraps the http front end for queries.
 
@@ -12,10 +15,28 @@ Other known libraries:
 
 Erlang: https://github.com/dalmatinerdb/ddb_client
 
-# status
+`status`_
+----------------------------
 
 * metric sending works
 * bucket and metric listing works via the binary protocol (this needs to be removed)
 * query via the http api has not been added yet
 
 Pull requests welcome.
+
+`example usage`_
+----------------------------
+
+.. code-block:: none
+    import time
+    from ddb-python.client import Send
+
+    dfe = ('127.0.0.1', 5555)
+
+    with Send(dfe) as send:
+        while True:
+            ts = int(time.time())
+            value = "123.456"
+            metric = "float"
+            send.send_payload(metric, ts, value)
+            time.sleep(1)
