@@ -64,6 +64,14 @@ class Query(object):
         self.sock.connect(address)
         self.streaming_bucket = None
 
+    def _send(self, packet):
+        length = struct.pack(PACK_FMT[TCP_SS], len(packet))
+        self._raw_send(length + packet)
+
+    def _raw_send(self, packet):
+        print binascii.hexlify(packet)
+        self.sock.sendall(packet)
+
     def _recv(self):
         header = self.sock.recv(TCP_SS)
         remaining, = struct.unpack(PACK_FMT[TCP_SS], header)
@@ -75,14 +83,14 @@ class Query(object):
         return msg
 
     def list_buckets(self):
-        Send._send(LIST_BUCKETS)
+        self._send(LIST_BUCKETS)
         binary = self._recv()
         reply = dproto_tcp.decode_reply(binary, BUCKETS_SS)
         return dproto_tcp.decode_buckets(reply)
 
     def list_metrics(self, bucket):
         packet = dproto_tcp.encode_name(bucket)
-        Send._send(LIST_METRICS + packet)
+        self._send(LIST_METRICS + packet)
         binary = self._recv()
         reply = dproto_tcp.decode_reply(binary, METRICS_SS)
         return dproto_tcp.decode_metrics(reply)

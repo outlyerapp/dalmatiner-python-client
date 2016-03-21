@@ -35,6 +35,7 @@ Pull requests welcome.
     dfe = ('127.0.0.1', 5555)
 
     with Send(dfe) as send:
+        send.switch_streaming("test")
         while True:
             ts = int(time.time())
             value = "123.456"
