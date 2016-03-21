@@ -30,7 +30,7 @@ Pull requests welcome.
 .. code-block:: none
 
     import time
-    from ddb-python.client import Send
+    from ddbpy.client import Send
 
     dfe = ('127.0.0.1', 5555)
 
