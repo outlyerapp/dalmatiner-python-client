@@ -28,6 +28,7 @@ Pull requests welcome.
 ----------------------------
 
 .. code-block:: none
+
     import time
     from ddb-python.client import Send
 
