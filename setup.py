@@ -12,7 +12,7 @@ def fread(fname):
 
 
 def get_version():
-    VERSIONFILE = "ddb-python/_version.py"
+    VERSIONFILE = "ddbpy/_version.py"
     verstrline = fread(VERSIONFILE).strip()
     vsre = r"^__version__ = ['\"]([^'\"]*)['\"]"
     mo = re.search(vsre, verstrline, re.M)
@@ -26,7 +26,7 @@ def get_version():
 
 dependencies = ['nose']
 
-setup(name='ddb-python',
+setup(name='ddbpy',
       version=get_version(),
       url='https://github.com/dataloop/dalmatiner-python-client',
       download_url=
