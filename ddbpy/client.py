@@ -5,6 +5,8 @@ import struct
 import dproto_tcp
 from dproto_hdr import LIST_BUCKETS, METRICS_SS, BUCKETS_SS, PACK_FMT, TCP_SS, LIST_METRICS, STREAM_MODE, PAYLOAD, TIME_SIZE
 
+DEBUG = False
+
 
 class Send(object):
     def __init__(self, address):
@@ -23,7 +25,8 @@ class Send(object):
 
     def close(self):
         if self.sock:
-            print "closing socket"
+            if DEBUG:
+                print "closing socket"
             self.sock.close()
             self.sock = None
 
@@ -32,7 +35,8 @@ class Send(object):
         self._raw_send(length + packet)
 
     def _raw_send(self, packet):
-        print binascii.hexlify(packet)
+        if DEBUG:
+            print binascii.hexlify(packet)
         self.sock.sendall(packet)
 
     def send_payload(self, metric, ts, value):
@@ -69,7 +73,8 @@ class Query(object):
         self._raw_send(length + packet)
 
     def _raw_send(self, packet):
-        print binascii.hexlify(packet)
+        if DEBUG:
+            print binascii.hexlify(packet)
         self.sock.sendall(packet)
 
     def _recv(self):
